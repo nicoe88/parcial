@@ -3,18 +3,24 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Persona;
 
 class test extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
-    {
-        $response = $this->get('/');
+    use DatabaseTransactions;
 
-        $response->assertStatus(200);
+    public function test_CrearUsuario(): void
+    {
+        $data = [
+            'nombre' => 'nombre',
+            'apellido' => 'apellido',
+            'telefono' => '123',
+        ];
+
+        $response = $this->postJson('/api/personas', $data);
+        $response->assertStatus(201);
     }
 }
