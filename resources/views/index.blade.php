@@ -10,7 +10,7 @@
 
     <ul>
         @foreach ($personas as $persona)
-            <li>{{ $persona->nombre }} {{ $persona->apellido }} - {{ $persona->telefono }}</li>
+            <li>{{$persona->id}} {{ $persona->nombre }} {{ $persona->apellido }} - {{ $persona->telefono }}</li>
         @endforeach
     </ul>
     

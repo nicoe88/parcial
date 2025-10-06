@@ -6,5 +6,5 @@ use App\Http\Controllers\PersonaController;
 
 Route::post('/personas', [PersonaController::class, 'Crear']);
 Route::delete('/personas/{id}', [PersonaController::class, 'Eliminar']);
-Route::put('/personas/{id}', [PersonaController::class, 'Editar']);
+Route::post('/personas/{id}', [PersonaController::class, 'Editar']);
 Route::get('/personas/{id}', [PersonaController::class, 'Detalle']);

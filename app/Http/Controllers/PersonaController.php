@@ -37,9 +37,10 @@ class PersonaController extends Controller
     {
         $persona = Persona::findOrFail($id);
         if($persona){
-           $persona->nombre = $request->post('nombre');
+            $persona->nombre = $request->post('nombre');
             $persona->apellido = $request->post('apellido');
             $persona->telefono = $request->post('telefono');
+            $persona->save();
         }
     }
 
