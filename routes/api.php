@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PersonaController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::post('/personas', [PersonaController::class, 'Crear']);
+Route::delete('/personas/{id}', [PersonaController::class, 'Eliminar']);
+Route::put('/personas/{id}', [PersonaController::class, 'Editar']);
+Route::get('/personas/{id}', [PersonaController::class, 'Detalle']);

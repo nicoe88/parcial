@@ -13,5 +13,9 @@
             <li>{{ $persona->nombre }} {{ $persona->apellido }} - {{ $persona->telefono }}</li>
         @endforeach
     </ul>
+    
+    @if ($personas->isEmpty())
+        <p>No hay personas registradas.</p>
+    @endif
 </body>
 </html>

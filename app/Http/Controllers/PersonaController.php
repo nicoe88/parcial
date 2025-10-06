@@ -11,24 +11,15 @@ class PersonaController extends Controller
     public function Index()
     {
         $personas = Persona::all();
-        return response()->json($personas);
+        return view('index', ['personas' => $personas]);
     }
 
-    public function Crear(Request $request){
-        $datosValidados = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'telefono' => 'required|integer'
-        ]);
-
-        if ($datosValidados->fails()){
-            return response()->json(['errors' => $datosValidados->errors()], 422);
-        };
-
+    public function Crear(Request $request)
+    {
         $persona = new Persona();
-        $persona->nombre = $datosValidados->validated()['nombre'];
-        $persona->nombre = $datosValidados->validated()['apellido'];
-        $persona->nombre = $datosValidados->validated()['telefono'];
+        $persona->nombre = $request->post('nombre');
+        $persona->apellido = $request->post('apellido');
+        $persona->telefono = $request->post('telefono');
         $persona->save();
         return response()->json(['message' => 'Persona creada exitosamente', 'persona' => $persona], 201);
     }
@@ -44,21 +35,11 @@ class PersonaController extends Controller
 
     public function Editar(Request $request, $id)
     {
-        $datosValidados = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'telefono' => 'required|integer'
-        ]);
-
-        if ($datosValidados->fails()){
-            return response()->json(['errors' => $datosValidados->errors()], 422);
-        };
-
         $persona = Persona::findOrFail($id);
         if($persona){
-            $persona->nombre = $datosValidados->validated()['nombre'];
-            $persona->nombre = $datosValidados->validated()['apellido'];
-            $persona->nombre = $datosValidados->validated()['telefono'];
+           $persona->nombre = $request->post('nombre');
+            $persona->apellido = $request->post('apellido');
+            $persona->telefono = $request->post('telefono');
         }
     }
 
